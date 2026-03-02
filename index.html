@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PLIN TO GO — Coming Soon Miami</title>
+
+<style>
+:root{
+  --bg1:#F7E6C5;
+  --bg2:#F3DDB2;
+  --text:#151515;
+  --muted:rgba(0,0,0,.62);
+  --pasta:#F2C94C;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  color:var(--text);
+  background:
+    radial-gradient(900px 520px at 70% 18%, rgba(255,255,255,.55), transparent 62%),
+    radial-gradient(800px 520px at 18% 78%, rgba(242,201,76,.22), transparent 60%),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(20px,3vw,40px);
+}
+
+/* SAFE language switch */
+.lang-fixed{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:1000;
+}
+
+.lang{
+  display:inline-flex;
+  gap:6px;
+  padding:6px;
+  border-radius:999px;
+  background:rgba(255,255,255,.5);
+  backdrop-filter:blur(10px);
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.lang button{
+  border:0;
+  background:transparent;
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:12px;
+  cursor:pointer;
+  color:rgba(0,0,0,.65);
+}
+
+.lang button[aria-pressed="true"]{
+  background:#111;
+  color:#fff;
+}
+
+/* CARD */
+.card{
+  position:relative;
+  overflow:hidden;
+  width:min(1100px,100%);
+  border-radius:30px;
+  background:rgba(255,255,255,.4);
+  backdrop-filter:blur(14px);
+  padding:clamp(30px,5vw,60px);
+  box-shadow:0 40px 80px rgba(0,0,0,.12);
+  text-align:center;
+}
+
+/* MIAMI watermark */
+.miami-bg{
+  position:absolute;
+  bottom:8%;
+  left:0;
+  right:0;
+  font-size:clamp(80px,15vw,200px);
+  font-weight:900;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(0,0,0,.05);
+  pointer-events:none;
+  user-select:none;
+}
+
+.logo{
+  width:clamp(300px,35vw,520px);
+  margin-bottom:25px;
+  filter:drop-shadow(0 20px 35px rgba(0,0,0,.15));
+}
+
+h1{
+  font-size:clamp(42px,6vw,84px);
+  margin:0 0 15px;
+}
+
+.sub{
+  max-width:600px;
+  margin:0 auto;
+  font-size:clamp(16px,1.7vw,20px);
+  line-height:1.6;
+  color:var(--muted);
+}
+
+.pill{
+  display:inline-block;
+  margin-top:25px;
+  padding:12px 20px;
+  border-radius:999px;
+  background:#fff;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:12px;
+  box-shadow:0 15px 30px rgba(0,0,0,.1);
+}
+
+.cta-row{
+  margin-top:30px;
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:14px 20px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:12px;
+  transition:.2s;
+}
+
+.btn-dark{
+  background:#111;
+  color:#fff;
+}
+
+.btn-light{
+  background:#fff;
+  color:#111;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+footer{
+  margin-top:30px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+@media(max-width:600px){
+  .miami-bg{bottom:5%}
+}
+</style>
+</head>
+
+<body>
+
+<div class="lang-fixed">
+  <div class="lang">
+    <button id="itBtn" aria-pressed="true">IT</button>
+    <button id="enBtn" aria-pressed="false">EN</button>
+  </div>
+</div>
+
+<div class="card">
+
+  <div class="miami-bg">MIAMI</div>
+
+  <img src="assets/logo.png" alt="PLIN TO GO logo" class="logo">
+
+  <h1 data-it="PLIN TO GO"
+      data-en="PLIN TO GO">PLIN TO GO</h1>
+
+  <p class="sub"
+     data-it="Un nuovo concept dedicato ai plin e alla pasta fresca. Semplice, veloce, irresistibile."
+     data-en="A new concept built around plin and fresh pasta. Simple, fast, irresistible.">
+  </p>
+
+  <div class="pill"
+       data-it="In arrivo · Miami, FL"
+       data-en="Coming to · Miami, FL">
+  </div>
+
+  <div class="cta-row">
+    <a class="btn btn-dark"
+       href="mailto:mattia@plintogo.com"
+       data-it="Contattaci"
+       data-en="Contact">
+    </a>
+
+    <a class="btn btn-light"
+       href="mailto:mattia@plintogo.com?subject=PLIN%20TO%20GO%20—%20Info"
+       data-it="Email Mattia"
+       data-en="Email Mattia">
+    </a>
+  </div>
+
+  <footer>© <span id="year"></span> PLIN TO GO · Concept page</footer>
+
+</div>
+
+<script>
+const itBtn=document.getElementById("itBtn");
+const enBtn=document.getElementById("enBtn");
+
+function setLang(lang){
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-it]").forEach(el=>{
+    el.textContent=el.getAttribute("data-"+lang);
+  });
+  itBtn.setAttribute("aria-pressed",lang==="it");
+  enBtn.setAttribute("aria-pressed",lang==="en");
+  localStorage.setItem("plinLang",lang);
+}
+
+itBtn.onclick=()=>setLang("it");
+enBtn.onclick=()=>setLang("en");
+
+document.getElementById("year").textContent=new Date().getFullYear();
+setLang(localStorage.getItem("plinLang")||"it");
+</script>
+
+</body>
+</html>
