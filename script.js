@@ -1,0 +1,12 @@
+const header=document.querySelector('.site-header');
+const toggle=document.querySelector('.menu-toggle');
+const nav=document.querySelector('#nav');
+const langButton=document.querySelector('.language');
+let lang='en';
+window.addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40),{passive:true});
+toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',open)});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));
+langButton.addEventListener('click',()=>{lang=lang==='en'?'it':'en';document.documentElement.lang=lang;document.querySelectorAll('[data-en]').forEach(el=>el.innerHTML=el.dataset[lang]);langButton.textContent=lang==='en'?'IT':'EN'});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelector('#year').textContent=new Date().getFullYear();
